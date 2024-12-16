@@ -1,0 +1,13 @@
+\mysubsectionformatted{Design Pattern Error Dialog}
+\myparagraph{
+    \begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black]
+        Il pattern permette di utilizzare un oggetto non appartenente all'interfaccia utente
+        e accessibile attraverso un Singleton con lo scopo di comunicare gli errori agli utenti.
+        Il pattern "avvolge" uno o più oggetti della UI (es. una finestra di testo), delegandogli
+        la notifica dell'errore. Inoltre, ripoterà l'errore al logger centralizzato degli errori.
+        Una \textit{Factory} ha il compito di creare l'oggetto UI appropriato in base ai parametri
+        di sistema ricevuti, quindi in base all'errore.
+    \end{tcolorbox}
+}
+
+\newpage

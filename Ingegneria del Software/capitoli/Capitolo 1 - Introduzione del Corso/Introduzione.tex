@@ -1,0 +1,94 @@
+\mysubsectionformatted{Diagrammi delle componenti e distribuzione}
+\myparagraph{
+    Sono diagrammi usati per poter raggruppare il codice in moduli e evitare le dipendenze tra loro (low coupling). Sono simili ai
+    diagrammi delle classi, solo che invece di contenere le classi contengono rispettivamente i componenti e nodi.
+    \\
+    I \textbf{nodi} sono degli elementi fisici che possiedono memoria e capacità di elaborazione,
+    vengono usati per modellare la tipologia dell'hardware, la distribuzione di componenti, sistemi client-server o un sistema
+    embedded. Si possono raggruppare in package e all'interno di questi si possono specificare relazioni di dipendenza,
+    generalizzazione, associazione e aggregazione.
+    \\
+    I \textbf{componenti} sono dei moduli di codice che partecipano all'esecuzione di un sistema, questi vengono eseguiti dai nodi
+    (dato che esistono già a run-time). Come le classi, hanno un nome e possono realizzare più interfacce. Le componenti
+    dispongono di operazioni raggiungibili solo attraverso le loro interfacce.\\
+    \textbf{Ricorda\dots}
+    \begin{itemize}
+        \item Le \textbf{classi} sono \textbf{astrazioni logiche}.
+        \item I \textbf{componenti} sono \textbf{oggetti fisici}, quindi l'implementazione delle classi.
+    \end{itemize}
+}
+
+%DIAGRAMMA DELLE COMPONENTI
+\mysubsectionformatted{Diagramma delle componenti}
+\myparagraph{Come accennato prima, un componente è un modulo (o una parte modulare) di un sistema che incapsula i suoi contenuti rendendoli
+    invisibli all'esterno (e quindi inaccessibili). I componenti possono essere sostituiti o aggiornati senza influenzare
+    l'intero sistema, garantendo flessibilità e manutentibilità.
+    \\
+    I diagrammi delle componenti definiscono il comportamento delle interfacce fornite e richieste.
+    \\
+    L'obiettivo di questo diagramma è quello di enfatizzare l'importanza delle interfacce e di come i componenti siano
+    vantaggiosi per i motivi spiegati sopra (indipendenza, modularità, riusabilità, rimpiazzabili senza influenzare il sistema...).
+    \\
+    I componenti possono definire sistemi software di dimensione e complessità arbitraria. I diagrammi UML delle componenti
+    permettono di modellare i componenti software e le interfacce annesse.
+    \\
+    Si parla di \textbf{dipendenza (dependency)} tra due elementi quando alla modifica di uno dei due a sua volta
+    potrebbe modificare anche l'elemento collegato.
+    \\
+    Spesso si fa riferimento a questo diagramma col nome di \textbf{Wiring Diagram}.
+}
+
+\newpage
+\subsubsection{Esempio di diagramma delle componenti}
+\begin{center}
+    \includegraphics[scale=0.7]{diagramma_componenti/comp_diag_1.png}
+\end{center}
+\myparagraph{
+    L'immagine sopra mostra come può essere dichiarato un componente in un diagramma UML, ovvero tramite notazione <<component>>
+    oppure inserendo un simbolo sul lato destro.
+    Altra cosa da ricordare è il collegamento tra il sistema e il componente, in base al tipo di freccia, indica se il componente
+    sta \textbf{usando} (NextGen usa il DB) o \textbf{richiedendo} (NextGen richiede il MessagingService) \textbf{l'interfaccia}.
+}
+
+%DIAGRAMMA DI DISTRIBUZIONE
+\mysubsectionformatted{Diagramma di distribuzione}
+\myparagraph{
+    I diagrammi di distribuzione (o deployment) mostrano l'assegnazione degli artefatti software concreti (es. file eseguibili)
+    ai nodi computazionali (es. servizi di elaborazione).
+    \\
+    Mostrano la distribuzione degli elementi software all'interno dell'architettura fisica e la comunicazione tra questi.
+    \\
+    L'obiettivo di questo diagramma è quello di comunicare l'architettura fisica o di distribuzione.
+}
+
+\subsubsection{Elementi principali del diagramma di distribuzione}
+
+\resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Nodo dispositivo}                 &
+        \begin{tabular}[c]{@{}l@{}}Risorsa fisica con servizi di memoria e\\  processazione per eseguire il software.\end{tabular}                                                                                  \\ \hline
+        \textbf{Nodo dell'ambiente di esecuzione} &
+        \begin{tabular}[c]{@{}l@{}}Risorsa software che viene eseguita all'interno \\ di un nodo esterno (es. computer) e fornisce un servizio\\ per ospitare e eseguire un altro software eseguibile.\end{tabular} \\ \hline
+        \textbf{Percorsi di comunicazione}        &
+        Connessione tra i nodi.                                                                                                                                                                                     \\
+        \hline
+    \end{tabular}}
+
+\myparagraph{
+    Esempi di diagrammi di distribuzione posso essere degli artefatti, ovvero elementi fisici, come ad esempio \textbf{file eseguibili}
+    (file JAR, .exe, script\dots) oppure \textbf{data files} (HTML, XML\dots).
+    \\
+    Un artefatto "\textbf{manifesta}" uno o più elementi di un modello. Con il termine manifestare si intende che l'artefatto rappresenta
+    l'oggetto fisico di uno o più elementi del modello. Questi elementi solitamente sono dei componenti.
+}
+
+\newpage
+\subsubsection{Esempio di uso di <<manifest>>}
+Per rappresentare una manifestazione si usa una linea tratteggiata con freccia aperta etichettata con la keyword <<manifest>>
+
+\begin{center}
+    \includegraphics[scale=0.8]{img/diagramma_distribuzione/manifest_dg.png}
+\end{center}
+
+\input{capitoli/Capitolo 1 - Introduzione del Corso/CBSE, SOSE e Microservizi.tex}

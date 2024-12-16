@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{verbatimbox}
+\usepackage{tabularx}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{wrapfig}
+\usepackage{parskip}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{float}
+\usepackage{amssymb}
+\usepackage[italian]{babel}
+\usepackage{ragged2e}
+
+
+
+\graphicspath{{./img/}}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage[a4paper, margin=2cm]{geometry} % Imposta i margini a 2 cm
+
+%Titoli Sezioni
+\newcommand{\mysectionformatted}[1]{\section[#1]{\centering \Huge #1}}
+
+%Titoli sotto-sezioni
+\newcommand{\mysubsectionformatted}[1]{\subsection[#1]{\centering \LARGE #1}}
+
+%Titoli sotto-sotto-sezioni
+\newcommand{\mysubsubsectionformatted}[1]{\subsubsection[#1]{\Large #1}}
+
+%Paragrafi
+\newcommand{\myparagraph}{\Large}
+
+%Colori
+\newcommand{\coloredtext}[2][red]{\textcolor{#1}{#2}}
+
+\renewcommand{\contentsname}{Indice}
+
+\begin{document}
+
+\title{Ingegneria del Software}
+\author{Gabriel Pesce}
+\date{2024/2025}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\mysectionformatted{Riassunto del corso}
+\input{Capitoli/Riassunto del Corso/Riassunto del Corso.tex}
+
+
+\mysectionformatted{Introduzione}
+\input{Capitoli/Capitolo 1 - Introduzione del Corso/Introduzione.tex}
+
+\mysectionformatted{Progettazione dell'architettura Software e Design Principle}
+\input{Capitoli/Capitolo 2 - Progettazione Architettura SW e Design Principle/Progettazione dell'architettura SW e Design Principle.tex}
+
+\mysectionformatted{Metriche, Understand, Refactoring e Antipattern strutturali}
+\input{Capitoli/Capitolo 3 - Metriche, Understand, Refactoring e Antipattern Strutturali/Metriche Object Oriented.tex}
+
+\mysectionformatted{Esercitazioni}
+\input{Capitoli/Esercitazioni/Pagina principale esercitazione.tex}
+
+\end{document}

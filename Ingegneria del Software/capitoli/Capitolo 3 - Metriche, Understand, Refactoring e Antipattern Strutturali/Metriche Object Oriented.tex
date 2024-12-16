@@ -1,0 +1,123 @@
+\mysubsectionformatted{Metriche Object Oriented}
+\myparagraph{
+    Nei sistemi Object Oriented, per gestire casi come Polimorfismo, Ereditarietà,
+    Information hiding e Astrazione, vengono usate delle metriche apposite in base al
+    criterio che vogliamo verificare.
+    \\
+    Le metriche sono:
+    \begin{enumerate}
+        \item \textbf{Line of code per class}
+        \item \textbf{Weighted method per class}
+        \item \textbf{Depth of the inheritance tree}
+        \item \textbf{Number of children}
+        \item \textbf{Coupling between object classes}
+        \item \textbf{Response for a class}
+        \item \textbf{Lack of cohesion in methods}
+    \end{enumerate}
+
+    \mysubsubsectionformatted{Line of code per class (LOCC)}
+    Calcola quante linee di codice ci sono in un metodo.
+
+    Sia:
+    \begin{enumerate}
+        \item \textit{c} la classe che si sta valutando
+        \item \textit{LOC(m)} il numero di linee nel metodo \textit{m}
+        \item \(\textit{M}_{\textit{Im}} (c)\) insieme dei metodi implementati nella classe \textit{c}
+    \end{enumerate}
+    
+    La formula per calcolare le linee di codice nella classe è
+    \vspace{-1cm}
+    \begin{center}
+        \begin{equation}
+            LOCC(c) = \sum_{m \in M_{Im} (c)} LOC(m)
+        \end{equation}
+    \end{center}
+    
+    \newpage
+    \mysubsubsectionformatted{Weighted method per class (WMC)}
+    Calcola il livello di complessità dei metodi in una classe.
+    Sia:
+    \begin{enumerate}
+        \item \textit{c} la classe che si sta valutando
+        \item \textit{VG(m)} la complessità ciclomatica del metodo \textit{m}
+        \item \(\textit{M}_{\textit{Im}} (c)\) insieme dei metodi implementati nella classe \textit{c}
+    \end{enumerate}
+    La formula per calcolare la complessità di una classe (o complessità di McCabe) è
+    \vspace{-1cm}
+    \begin{center}
+        \begin{equation}
+            WMC(c) = \sum_{m \in M_{Im} (c)} VG(m)
+        \end{equation}
+    \end{center}
+    \`{E} una metrica importante, in quanto stabilisce l'indice di complessità di una classe, quindi quanto sia comprensibile
+    e facile da modificare.\\
+    Maggiore è il numero dei metodi, maggiore è la complessità della classe\\ \Rightarrow maggiore è la probabilità
+    che la classe è legata all'applicazione\\ \Rightarrow minore possibilità di riuso.
+
+    \mysubsubsectionformatted{Depth of the inheritance tree (DIT)}
+    Calcola la distanza massima di un nodo dalla radice dell'albero. In altre parole verifica quanto una classe
+    venga ereditata da altre classi.
+    \begin{itemize}
+        \item Maggiore è la profondità della classe, maggiore è il numero di metodi che essa può ereditare, rendendo più 
+        complesso predire il suo comportamento.
+        \item Alberi di ereditarietà con maggiore profondità aumentano la complessità del progetto, dato che più classi e
+        metodi sono coinvolti.
+        \item Maggiore è la profondità di una classe in una gerarchia, maggiore è il riuso potenziale dei metodi ereditati.
+    \end{itemize}
+
+    \mysubsubsectionformatted{Number of children (NOC)}
+    Calcola il numero di sottoclassi di una superclasse.\\
+    Al crescere del numero di sottoclassi si verificano i seguenti casi:
+    \begin{itemize}
+        \item Cresce il livello di riuso.
+        \item Aumenta la quantità di test case necessari a testare ogni superclasse.
+        \item La superclasse tende a diventare impertinente, perchè ciascuna sottoclasse può 
+        aggiungere dei comportamenti specifici ai metodi, distaccandosi \\dall'idea generale della superclasse. 
+        \item Le sottoclassi potrebbero non essere membri appropriati della madre, perchè può accadere che la sottoclasse
+        erediti dei metodi che non ritiene sensato usare.
+    \end{itemize}
+
+    \mysubsubsectionformatted{Coupling between object classes (CBO)}
+    Calcola il numero di classi a cui una classe è accoppiata.\\
+    Un eccessivo accoppiamento è sicuramente negativo in termini di modularità e riuso, infatti si consiglia sempre
+    di mantenere un basso accoppiamento (low coupling) in modo da facilitare test e modifiche.
+
+    \mysubsubsectionformatted{Response for a class (RFC)}
+    Calcola l'insieme dei metodi che possono essere eseguiti in risposta ad un messaggio ricevuto da un oggetto della classe.\\
+    Un elevato numero di metodi può aumentare la complessità progettuale della classe e lo sforzo dei test.
+
+    \mysubsubsectionformatted{Lack of cohesion in methods (LCOM)}
+    Calcola la non-coesione tra gli elementi di una classe. Viene espressa tramite numero di metodi che accedono agli 
+    stessi attributi di una classe.
+    
+    Sia:
+    \begin{enumerate}
+        \item \textit{C} una classe con \textit{n} metodi \textit{\(M_1, M_2,\dots M_n\)}
+        \item \textit{\(I_j\)} l'insieme delle istanze di variabili referenziate da \textit{\(M_i\)}
+        \item \textit{\(P = \{(I_j, I_i) \mid I_i \cap I_j = \varnothing \}\)}
+        \item \textit{\(Q = \{(I_j, I_i) \mid I_i \cap I_j \neq  \varnothing \}\)}
+    \end{enumerate}
+    Presi tutti gli insiemi \(I_1 , \dots I_n \), se sono vuoti allora P = \varnothing.
+    \vspace{-0.1cm}
+    \begin{center}
+               \textit{se |P| > |Q| allora LCOM = |P| - |Q|, altrimenti LCOM = 0}
+    \end{center}
+    Quindi \textit{LCOM = num. intersezioni vuote - num. intersezioni non vuote}\\
+    Minore è il valore di LCOM, maggiore è la coesione (metodi strettamente legati tra loro e la classe ha uno scopo chiaro).\\
+    Maggiore è il valore di LCOM, minore è la coesione (i metodi non condividono molti attributi comuni, quindi la classe è
+    più difficile da gestire e comprendere).
+    \begin{itemize}
+        \item \`E sempre consigliato avere una classe altamente coesa, in modo da favorirne la sua incapsulazione.
+        \item Una bassa coesione può comportare una divisione di una classe in due o più sottoclassi.
+        \item Una bassa coesione comporta anche complessità e probabilità di compiere errori durante il processo di sviluppo.
+    \end{itemize}
+    \newpage
+    Ultima considerazione riguardo a questa metrica, esiste un altro metodo proposto da Henderson-Sellers che, tramite una formula
+    (che non starò a scrivere), ci indica se la coesione è perfetta o meno:
+    \begin{itemize}
+        \item Se \textbf{LCOM = 0}, la coesione è perfetta (tutti gli attrbiuti sono acceduti da tutti i metodi della classe).
+        \item Se \textbf{LCOM = 1}, c'è una completa mancanza di coesione (ogni attributo è acceduto da un solo metodo della classe).
+    \end{itemize}
+
+    \newpage
+}

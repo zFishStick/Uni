@@ -1,0 +1,108 @@
+\mysubsectionformatted{Analisi Architetturale}
+\myparagraph{
+    L'analisi architetturale ha l'obiettivo di indentificare e risolvere i requisiti non
+    funzionali del sistema (es. la sicurezza) nel contesto dei requisiti funzionali.
+    \\
+    Ricordiamo il documento che definisce i requisiti non funzionali, ovvero
+    le \\ \coloredtext[blue]{specifiche supplementari}.
+    \\
+    I passi da seguire durante l'analisi sono:
+    \begin{enumerate}
+        \item \textbf{Investigazione}: identificazione di requisiti funzionali e non funzionali
+              che hanno maggiore impatto sul sistema.
+        \item \textbf{Progettazione}: risoluzione dei requisiti identificati.
+    \end{enumerate}
+    Per i requisiti che hanno impatto architetturale significativo si analizzano le
+    alternative e si creano delle soluzioni per gestire i compromessi e le priorità.
+
+    \mysubsubsectionformatted{Collezione e organizzazione dei requisiti non funzionali}
+    Viene stilata la seguente tabella per i requisiti non funzionali:
+    \vspace{-0.1cm}
+
+    \begin{center}
+        \renewcommand{\arraystretch}{1.5}
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{|ll|}
+                \hline
+                \multicolumn{2}{|c|}{\cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} \textbf{Tabella dei fattori}}}                                                                                               \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Nome fattore}}                & Nome del fattore (requisito)                                                                                                                \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Misure e scenari di qualità}} & Come il fattore sarà misurato e valutato tramite metriche di qualità                                                                        \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Variabilità}}                 & \begin{tabular}[c]{@{}l@{}}Quanto il sistema è flessibile a soddisfare il requisito \\ con possibilità di evoluzione in futuro\end{tabular} \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Impatto del fattore}}         & Quanto influisce il fattore sull'architettura del sistema                                                                                   \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Priorità per il successo}}    & Quanto è importante il fattore per il successo del sistema                                                                                  \\ \hline
+                \multicolumn{1}{|l|}{\textbf{Difficoltà o rischi}}         & Possibili difficoltà associate al soddisfacimento di questo requisito                                                                       \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+    
+
+    \mysubsubsectionformatted{Gerarchia di obiettivi per le decisioni architetturali}
+    Esistono 3 tipi di obiettivi e priorità:
+    \begin{enumerate}
+        \item Vincoli inflessibili: sicurezza, conformità alle leggi\dots
+        \item Obiettivi di business: tipi di clienti finali interessati al prodotto software
+        \item Altri obiettivi: estensioni con altre funzionalità
+    \end{enumerate}
+
+    \mysubsubsectionformatted{Principi di base della progettazione architetturale}
+    Sono dei principi che offrono maggiore efficienza all'architettura software:
+    \begin{center}
+        \resizebox{0.4\columnwidth}{!}{%
+            \begin{tabular}{|c|}
+                \hline
+                \rowcolor[HTML]{3166FF}
+                \multicolumn{1}{|c|}{\cellcolor[HTML]{3166FF}{\color[HTML]{FFFFFF} \textbf{Principi}}}               \\ \hline
+                Accoppiamento basso                                                                                  \\ \hline
+                Coesione alta                                                                                        \\ \hline
+                Variazione protetta                                                                                  \\ \hline
+                \begin{tabular}[c]{@{}l@{}}Separazione degli interessi e \\ localizzazione dell'impatto\end{tabular} \\ \hline
+                \begin{tabular}[c]{@{}l@{}}Utilizzo di pattern e \\ stili architetturali\end{tabular}                \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+
+    \mysubsubsectionformatted{L'architettura logica}
+    Questo tipo di architettura vede il sistema come un insieme di package logici. Descrive il sistema nei termini della
+    sua organizzazione in layers, packages, frameworks, classi, interfacce e sottosistemi.
+    \\
+    I\textbf{ \coloredtext[blue]{package}} raggruppano un insieme di responsabilità coese
+    (strettamente correlate tra loro), questa caratteristica viene definita anche come
+    \textbf{ \coloredtext[blue]{modularizzazione}}.
+    \\
+    Questa caratteristica favorisce una separazione degli interessi (separation of concerns).
+    \\
+    Ciascun package si occupa di quello per cui è stato progettato, senza preoccuparsi del resto del sistema.
+
+    \mysubsubsectionformatted{I pattern}
+    I pattern si dividono in diverse tipologie:
+    \vspace{-0.5cm}
+    \begin{center}
+        \resizebox{\columnwidth}{!}{%
+            \begin{tabular}{|
+                    >{\columncolor[HTML]{3166FF}}l |l|}
+                \hline
+                {\color[HTML]{FFFFFF} \textbf{Pattern architetturali}} & Progettazione a larga scala (es. i pattern layers)                                                                                                                                    \\ \hline
+                {\color[HTML]{FFFFFF} \textbf{Design patterns}}        & \begin{tabular}[c]{@{}l@{}}Progettazione a scala media-piccola che hanno\\ connessioni fra gli elementi a larga scala (es. i pattern GoF)\end{tabular}                                \\ \hline
+                {\color[HTML]{FFFFFF} \textbf{Idiomi}}                 & \begin{tabular}[c]{@{}l@{}}Soluzioni progettuali di basso livello legate al linguaggio\\ o alle implementazioni usate (es. comparazione di due stringhe,\\ Singleton...)\end{tabular} \\ \hline
+                {\color[HTML]{FFFFFF} \textbf{Strategie}}              & \begin{tabular}[c]{@{}l@{}}Direttive e consigli pratici su come risolvere un certo problema\\ in modo efficace.\end{tabular}                                                          \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+    Per chiarire meglio la differenza tra i pattern architetturali e i design pattern ci si può riferire alle
+    seguenti domande:
+    \begin{itemize}
+        \item Quali sono le parti fondamentali del sistema? \rightarrow \vspace{0.25em} Pattern architetturali
+        \item Come sono connesse tra loro? \rightarrow \vspace{0.25em} Design patterns
+    \end{itemize}
+
+    \mysubsubsectionformatted{Problemi nelle architetture software}
+    Si possono verificare diverse problematiche durante lo sviluppo dell'architettura software:
+    \begin{enumerate}
+        \item Alto accoppiamento dei componenti, portano alla modifica di più elementi in caso di cambiamento.
+        \item La logica applicativa condivisa con le GUI.
+        \item I servizi tecnici direttamente collegati alla logica applicativa, sfavorendone il riuso.
+        \item L'evoluzione del sistema risulta difficoltosa dato l'alto accoppiamento e le numerose funzionalità
+              distinte e non correlate tra loro.
+        \item Ovviamente possono esserci tante altre problematiche\dots
+    \end{enumerate}
+}

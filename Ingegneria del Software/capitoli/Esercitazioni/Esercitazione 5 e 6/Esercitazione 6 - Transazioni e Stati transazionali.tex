@@ -1,0 +1,76 @@
+\mysubsectionformatted{Transazioni e Stati transazionali}
+\myparagraph{
+    Una \textbf{Transazione} è un'unità di lavoro i cui compiti devono essere completati tutti con successo,
+    oppure nessuno di essi deve essere completato. 
+
+    Quando lavoriamo su oggetti persistenti (li inseriamo, cancelliamo o aggiorniamo), questi non vengono aggiornati
+    subito nel database, bisogna quindi eseguire un'operazione di commit esplicita.
+    Possiamo definire \textbf{3 luoghi} in cui possono trovarsi gli oggetti persistenti:
+    \begin{enumerate}
+        \item nell'applicazione
+        \item nel database
+        \item nella cache
+    \end{enumerate} 
+
+    Si possono anche definire gli \textbf{stati} associati agli oggetti persistenti:
+    \begin{enumerate}
+        \item \textbf{New}: appena creato e non ancora presente nel DB
+        \item \textbf{Old}: recuperato dal DB (quindi creato in precedenza) 
+        \item \textbf{Clean}: non modificato
+        \item \textbf{Dirty}: modificato
+        \item \textbf{Deleted}: cancellato
+    \end{enumerate}
+
+    \setcounter{figure}{0}
+
+    \begin{figure}[h]
+        \caption{Diagramma degli Stati}
+        \centering
+        \includegraphics[scale=0.27]{Esercitazione - Design Patterns/Diagramma degli Stati.png}
+    \end{figure}
+    \textbf{Nota:} quando salviamo o cancelliamo un oggetto persistente, questo non viene immediatamente
+    salvato/cancellato dal DB, ma vanno in uno stato appropriato (OldDirty o OldDeleted) in attesa di un eventuale rollback
+    (annullo l'operazione) o commit (procedo con l'operazione).
+    \newpage
+    Il comportamento di \textbf{commit} e \textbf{rollback} sono molto simili tra loro (in termini di codice)
+
+    \begin{center}
+        \includegraphics[scale=0.25]{Esercitazione - Design Patterns/Commit e Rollback.png}
+    \end{center}
+    Per evitare una ripetizione di codice, usiamo il pattern \textbf{State}:
+    \begin{center}
+        \includegraphics[scale=0.24]{Esercitazione - Design Patterns/State con Commit e Rollback.png}
+    \end{center}
+    Ricordando cosa fa lo State, crea delle classi che indicano gli stati, le classi implementano un'interfaccia
+    comune. Questa interfaccia delega le operazioni all'oggetto \textbf{contesto} in base al suo stato corrente.
+
+    Nell'esempio sopra il \textit{PersistentObject} rappresenta l'oggetto \textbf{Context}, mentre \textit{PObjectState}
+    l'interfaccia \textbf{\textit{State}}. Per ogni stato concreto, definiamo le operazioni appropriate.
+    \newpage
+    \mysubsubsectionformatted{Modellazione delle operazioni di una transazione}
+    Le transazioni, ovviamente, possono essere molteplici. In base all'ordine in cui vengono eseguite le operazioni all'interno
+    di una transazione, si può influenzare la performance della transazione. Bisogna quindi trovare una soluzione, ovvero un modo
+    per poter riordinare tutte le operazioni uguali prima di essere eseguiti. In questo ambito, interviene il pattern \textbf{Command}.
+    
+    Ricordando cosa fa Command, definisce per ciascun compito una classe che implementa un'interfaccia comune, a differenza di State che
+    rappresentava uno stato, \textbf{nel Command ciascuna classe rappresenta un comando} e le azioni diventano oggetti.
+    \begin{center}
+        \includegraphics[scale=0.24]{Esercitazione - Design Patterns/Command con Commit e Rollback.png}
+    \end{center}
+    Nell'esempio, la classe Transaction è l'\textbf{invoker}, ovvero la classe che richiede all'interfaccia \textit{\textbf{ICommand}} le
+    operazioni da eseguire. L'interfaccia riceve le operazioni e la classe DBCommand (la \textbf{ConcreteCommand}) incapsula le operazioni, per
+    poi farle eseguire dal \textbf{Receiver}, ovvero la PersistentObject.
+    \newpage
+    \mysubsubsectionformatted{Lazy materialization con l'uso di Proxy}
+    Ricordando la definizione di materializzazione, si tratta della traduzione di un record di un DB a un oggetto.
+
+    A volte si vuole evitare il processo di materializzazione, per questioni di performance e a meno che non sia strettamente necessario. Si può
+    risolvere questo problema tramite un processo di materializzazione "ritardata", ovvero la \textit{Lazy Materialization}.
+
+    Il pattern utile allo scopo è il \coloredtext[blue]{\textbf{Virtual Proxy}}.
+    \mysubsubsectionformatted{Design Pattern Virtual Proxy}
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Design Pattern Virtual Proxy.tex}
+    \newpage
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Eager e Lazy Materialization.tex}
+    
+    }

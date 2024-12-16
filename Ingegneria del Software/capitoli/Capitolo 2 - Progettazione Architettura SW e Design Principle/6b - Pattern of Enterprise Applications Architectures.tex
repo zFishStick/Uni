@@ -1,0 +1,81 @@
+\mysubsectionformatted{Pattern of Enterprise Applications Architectures}
+\myparagraph{
+    All'interno di grandi aziende, si hanno una grandissima quantità di dati da gestire,
+    organizzati in sistemi moderni come i DBMS, e nel tempo questi dati potranno dover essere
+    migrati attraverso nuove applicazioni, si parla di dati persistenti su archi di tempo molto ampi.
+    \\
+    L'accesso a questi dati è concorrente, arrivando fino a milioni di accessi contemporanei, le interfacce
+    sono molto articolate, distinte tra loro e presentate in modo differente per tipi di utenti e obiettivi
+    differenti.
+    \\
+    Le applicazioni \textbf{enterprise} possono essere integrate con ulteriori applicazioni. Queste fanno uso
+    di architetture stratificate (per la maggior parte di essi).
+    
+    \coloredtext[blue]{\textbf{Business Logic:}} regole di interpretazione e elaborazione dei dati in base
+    all'utilità dell'applicazione. Queste regole tendono a cambiare in base a diversi criteri:
+    \begin{itemize}
+        \item Gestione personalizzata di clienti
+        \item Adeguamento a nuove logiche di mercato
+        \item Cambiamento nelle strategie di marketing
+        \item Altro
+    \end{itemize}
+
+    Riguardo la \textbf{performance}, molte decisioni architetturali aggravano su essa, portando a sacrificarne
+    un po' pur di migliorare la comprensibilità.\\
+    Tra i fattori che costituiscono la performance abbiamo la \textbf{scalabillità},
+    \\l'\textbf{efficienza}, il \textbf{Tempo di Risposta} e la \textbf{Latenza} (Quanto puoi fare in un certo lasso di tempo).
+    
+    \mysubsubsectionformatted{Design Patterns e Architetturali}
+    Per fare una distinzione tra i due:
+    \begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black]
+        I \textbf{Design Pattern} aiutano a trovare delle soluzioni a problemi in modo tale che si possano usare queste soluzioni
+        tantissime volte. Purtroppo adattarli ai casi reali richiede uno sforzo progettuale significativo.
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[colback=green!5!white, colframe=green!75!black]
+        I \textbf{Pattern Architetturali} offrono soluzioni a problemi architetturali, aiutando a documentare le decisioni prese,
+        facilitando la comunicazione tra gli stakeholder mediante un vocabolario comune.
+    \end{tcolorbox}
+    \newpage
+    \mysubsubsectionformatted{Tipologie di Pattern Architetturali}
+    \begin{enumerate}
+        \item Domain Logic Patterns
+        \item Data Source Architectural Patterns
+        \item Object Relational Behavioral Patterns
+        \item Object Relational Structural Patterns
+        \item Web Presentation Patterns
+        \item Concurrency Patterns
+        \item Security Patterns
+              \begin{enumerate}
+                \renewcommand{\labelenumii}{\theenumi.\arabic{enumii}}
+                \setcounter{enumii}{0}
+                  \item Federated Identity Pattern
+                  \item Gatekeeper Pattern
+                  \item Valet Key Pattern
+              \end{enumerate}
+        \item Performance Patterns
+    \end{enumerate}
+    Per descrivere un pattern architetturale ci focalizzeremo su 4 punti:
+    \begin{enumerate}
+        \item \textbf{Descrizione}
+        \item \textbf{Diagramma UML}
+        \item \textbf{Esempio di applicazione}
+        \item \textbf{Vantaggi e Svantaggi}
+    \end{enumerate}
+    \mysubsubsectionformatted{Frameworks}
+    I framework sono delle librerie di codice astratte e estendibili che vengono adattate per scopi specifici da parte
+    degli sviluppatori. Per i software moderni sono oramai essenziali, migliorano la produttività ma con degli effetti
+    collaterali indesiderati, come debolezze architetturali o vulnerabilità nella sicurezza.
+    \\
+    Tra i framework più conosciuti abbiamo
+    \begin{itemize}
+        \item Maven
+        \item Django
+        \item Spring
+        \item Molti altri
+    \end{itemize}
+
+    Tra i produttori di framework troviamo anche \textbf{Amazon Web Services (AWS)} e \textbf{Microsoft's Azure}.
+    
+    \newpage
+}

@@ -1,0 +1,34 @@
+\mysubsectionformatted{MS - Microservices Software Engineering}
+\myparagraph{
+    Si tratta di uno stile architetturare che struttura l'applicazione come una\\ collezione
+    di piccoli e contenuti componenti con basso accoppiamento. Questi componenti vengono anche
+    chiamati servizi e implementano delle specifiche capacità di business.
+    \\
+    Tra le caratteristiche dei microservizi troviamo:
+    \begin{enumerate}
+        \item Comunicazione attraverso protocolli leggeri (lightweight).
+        \item Sviluppati da team dedicati.
+        \item La distribuzione è indipendente.
+    \end{enumerate}
+    L'obiettivo principale dei microservizi sarebbe quello di garantire scalabilità,\\ affidabilità, eterogeneità
+    tecnologica e aggiornamenti continui del codice,\\ purtroppo, nella realtà ci troviamo di fronte a una
+    complessa manutenibilità e una fase di testing difficile.
+
+    \begin{center}
+        \resizebox{\columnwidth}{!}{
+            \begin{tabular}{c|c|c|}
+                \cline{2-3}
+                \multicolumn{1}{l|}{}                                                                                & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} SOSE}                                                                                               & \cellcolor[HTML]{3531FF}{\color[HTML]{FFFFFF} MS}                                                                         \\ \hline
+                \multicolumn{1}{|c|}{\textbf{Obiettivo}}                                                             & Riusabilità dei servizi                                                                                                                           & Garantire basso accoppiamento                                                                                             \\ \hline
+                \multicolumn{1}{|c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Di cosa\\ fa uso\end{tabular}}}              & \begin{tabular}[c]{@{}c@{}}Servizi: include tante funzionalità\\ di business e spesso è implementato\\ come un completo sottosistema\end{tabular} & \begin{tabular}[c]{@{}c@{}}Micro-servizi: creati per servire\\ solo una specifica funzionalità\\ di business\end{tabular} \\ \hline
+                \multicolumn{1}{|c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Cosa succede \\ alla modifica\end{tabular}}} & \begin{tabular}[c]{@{}c@{}}Richiede la modifica del sistema\\ monolitico, una modifica significativa\end{tabular}                                 & \begin{tabular}[c]{@{}c@{}}Richiede la creazione di un \\ nuovo servizio\end{tabular}                                     \\ \hline
+                \multicolumn{1}{|c|}{\textbf{Comunicazione}}                                                         & Tramite ESB (Enterprise Service Bus)                                                                                                              & \begin{tabular}[c]{@{}c@{}}Meno elaborata e semplice \\ sistema di messaggi\end{tabular}                                  \\ \hline
+                \multicolumn{1}{|c|}{\textbf{Protocolli}}                                                            & Multipli protocolli per messaggi (SOAP)                                                                                                           & Protocolli leggeri (HTTP, REST)                                                                                           \\ \hline
+                \multicolumn{1}{|c|}{\textbf{Distribuzione}}                                                         & \begin{tabular}[c]{@{}c@{}}Uso di una piattaforma comune per\\ la distribuzione di tutti i servizi\end{tabular}                                   & \begin{tabular}[c]{@{}c@{}}Uso di una piattaforma cloud\\ per la distribuzione\end{tabular}                               \\ \hline
+                \multicolumn{1}{|c|}{\textbf{Container}}                                                             & Uso poco popolare (Docker o Kubernates)                                                                                                           & Uso molto popolare                                                                                                        \\ \hline
+                \multicolumn{1}{|c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Archiviazione\\ dei dati\end{tabular}}}      & Condivisi tra i diversi servizi                                                                                                                   & \begin{tabular}[c]{@{}c@{}}Ogni micro-servizio può avere\\ un proprio archivio indipendente\end{tabular}                  \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+    \newpage
+}

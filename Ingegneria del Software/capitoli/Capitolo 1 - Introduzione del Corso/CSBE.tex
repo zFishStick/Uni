@@ -1,0 +1,135 @@
+\mysubsectionformatted{CBSE - Component Based Software Engineering}
+\myparagraph{
+    Le parole chiave che determinano questo approccio sono la riusabilità e l'uso di componenti software.
+    \\
+    Questo approccio nasce dal momento che molto spesso lo sviluppo orientato agli oggetti fallisca per mancanza di riuso
+    dei componenti, ciò è causato da vari motivi:
+
+    \begin{enumerate}
+        \item Le classi sono troppo dettagliate e specifiche per poter essere riutilizzate in altri contesti.
+        \item I componenti sono più astratti delle classi stesse.
+        \item I componenti vengono visti come dei provider di servizi indipendenti (stand alone).
+        \item I componenti possono esistere come delle entità indipendenti.
+    \end{enumerate}
+
+    \newpage
+
+    \noindent L'approccio CBSE fa sì che i componenti forniscano una funzionalità senza dover considerare dove il componente viene
+    eseguito o il suo linguaggio di programmazione, questo perché è un'entità eseguibile e indipendente che può essere usato per
+    uno o più oggetti eseguibili. L'interfaccia del componente è pubblica e tutte le interazioni avvengono tramite questa.
+    \\
+    Come per i diagrammi, questo approccio dispone di due tipi di interfacce:
+    \vspace{-12pt}
+
+    \begin{center}
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Interfacce Fornite}   &
+                \begin{tabular}[c]{@{}l@{}}Definiscono i servizi forniti dal componente verso altri componenti.\\ Essenzialmente, è l'API che definisce i metodi che possono essere chiamati dall'utente.\end{tabular}
+                \\ \hline
+                \textbf{Interfacce Richieste} &
+                \begin{tabular}[c]{@{}l@{}}Definiscono i servizi richiesti dal componente per eseguire quanto specificato.\\ Ciò non compromette l'indipendenza o la distribuzione del componente perché l'interfaccia\\ richiesta non definisce come questi servizi vengono forniti.\end{tabular}
+                \\ \hline
+            \end{tabular}
+        }
+    \end{center}
+
+    \vspace{8pt}
+
+    \mysubsubsectionformatted{Componenti essenziali del CBSE}
+    \begin{enumerate}
+        \item Componenti indipendenti specificati dalle loro interfacce.
+        \item Standard specifici dei componenti per facilitare la loro integrazione.\\
+              Stabiliscono come i componenti comunicano e operano tra loro.
+        \item Middleware che fornisce supporto per la portabilità dl componente.
+        \item Un processo di sviluppo mirato al riuso.
+    \end{enumerate}
+
+    \mysubsubsectionformatted{Principi di progettazione}
+    \begin{enumerate}
+        \item I componenti sono indipendenti, non inteferiscono tra loro.
+        \item L'implementazione dei componenti è nascosta.
+        \item La comunicazione avviene tra interfacce ben definite.
+        \item Le piattaforme dei componenti sono condivise in modo da ridurre i costi di sviluppo.
+    \end{enumerate}
+
+    I componenti sviluppati tramite diversi approcci NON lavorano tra loro.
+
+    \mysubsubsectionformatted{Elementi basici di un modello di componente}
+    \begin{center}
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Interfacce}    & \begin{tabular}[c]{@{}l@{}}Il modello dei componenti specifica come le interfacce devono essere definite\\ e i suoi elementi (operazioni, nomi, parametri...).\end{tabular}                                    \\ \hline
+                \textbf{Uso}           & \begin{tabular}[c]{@{}l@{}}Per essere distribuiti e accessi in remoto, ciascun componente deve avere un\\ nome univoco.\end{tabular}                                                                           \\ \hline
+                \textbf{Distribuzione} & \begin{tabular}[c]{@{}l@{}}Il modello dei componenti include una specifica di come i componenti \\ devono essere impacchettati per la loro distribuzione come entità\\ indipendenti e eseguibili.\end{tabular} \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+
+    \newpage
+    \mysubsubsectionformatted{Processi del CBSE}
+    I processi del CBSE sono, come dice il nome, dei processi software che supportano l'utilizzo di
+    tale approccio. Permettono la riusabilità delle attività di processo coinvolte nelle attività
+    di sviluppo e un riuso dei componenti.
+    \\
+    Bisogna fare una distinzione in merito alla modalità di sviluppo e il riuso:
+    \vspace{-12pt}
+    \begin{center}
+        \resizebox{\textwidth}{!}{
+            \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Sviluppo PER il riuso} & \begin{tabular}[c]{@{}l@{}}Si basa sullo sviluppo di componenti che \\ verranno poi utilizzati in altre applicazioni.\end{tabular} \\ \hline
+                \textbf{Sviluppo CON riuso}    & \begin{tabular}[c]{@{}l@{}}Si basa sullo sviluppo di nuove applicazioni\\ usando dei componenti già esistenti.\end{tabular}        \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+    \vspace{8pt}
+
+    \mysubsubsectionformatted{Processi di supporto del CBSE}
+    \begin{center}
+        \resizebox{\textwidth}{!}{%
+            \begin{tabular}{|l|l|}
+                \hline
+                \textbf{Acquisizione del componente}   & \begin{tabular}[c]{@{}l@{}}Processo che acquisisce i componenti per il loro riuso o trasforma\\ lo sviluppo in un componente riutilizzabile.\end{tabular}                        \\ \hline
+                \textbf{Gestione del componente}       & \begin{tabular}[c]{@{}l@{}}Verte sulla gestione dei componenti riusabili assicurandosi\\ siano propriamente catalogati, immagazzinati e resi disponibili per il riuso.\end{tabular} \\ \hline
+                \textbf{Certificazione del componente} & Processo che controlla se un componente soddisfa le sue specifiche.                                                                                                                 \\ \hline
+            \end{tabular}%
+        }
+    \end{center}
+    \vspace{8pt}
+
+    \mysubsubsectionformatted{CBSE per il riuso}
+    Si concentra sullo sviluppo dei componenti. Lo scopo è quello di generalizzare quei componenti che vengono creati per 
+    specifiche applicazioni con lo scopo di renderli riutilizzabili.
+    \\
+    Un componente ha più probabilità di essere riutilizzato se è associato a un'astrazione di dominio stabile, ovvero a un oggetto
+    di business ben definito e costante nel sistema.
+    \\
+    Per fare un esempio di dominio stabile può essere un ospedale, dove i componenti hanno ciascuno degli scopi fontamentali 
+    (dottori, pazienti, trattamenti ecc\dots)
+
+    \newpage
+    \mysubsubsectionformatted{CBSE con riuso}
+    Al contrario della prima tipologia, questa cerca e integra componenti già esistenti.
+    Quando si riutilizzano i componenti in un progetto software, è fondamentale considerare i compromessi tra i requisiti ideali 
+    di ciò che si desidererebbe avere e i servizi reali forniti dai componenti disponibili.
+    \\
+    Questo approccio richiede:
+    \begin{enumerate}
+        \item Sviluppo dei requisiti preliminari (essenziali).
+        \item Ricerca dei componenti e la loro modifica in base alle funzionalità disponibili.
+        \item Cercare nuovamente per trovare componenti migliori che soddifsano i requisiti.
+        \item Unire (o comporre) i componenti per creare il sistema.
+    \end{enumerate}
+
+    \mysubsubsectionformatted{Problemi ancora aperti con CBSE}
+    \begin{enumerate}
+        \item Quanto è affidabile un componente senza un codice sorgente disponibile?
+        \item Chi certifica la qualità dei componenti?
+        \item Come possono essere predette le proprietà emergenti della composizione dei componenti?
+        \item Come si fanno le analisi tra le caratteristiche di un componente con un altro?
+    \end{enumerate}
+}
+    \newpage

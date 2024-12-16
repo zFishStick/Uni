@@ -1,0 +1,165 @@
+\mysubsectionformatted{Progettazione di Framework di persistenza dei dati}
+\myparagraph{
+    In questa esercitazione, si useranno 4 design pattern già visti per la progettazione
+    di framework di persistenza dei dati:
+    \begin{enumerate}
+        \item Template Method
+        \item State
+        \item Command
+        \item Proxy
+    \end{enumerate}
+    Quando parliamo di \textbf{Oggetti persistenti}, si intendono quegli oggetti che rimangono
+    in memoria durante l'esecuzione del programma, quindi senza che vengano ripristinati alla fine
+    dell'esecuzione.
+
+    Solitamente, si fa ricorso ai \textit{database relazionali} che permettono di modellare un
+    mapping tra la rappresentazione \textit{record oriented} del database e quella \textit{object-oriented}
+    del sistema.
+
+    Ecco alcune definizioni riguardo la persistenza:
+    \begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black]
+        Per \textbf{Framework di Persistenza} si intende un insieme di classi e interfacce riusabili, estendibili
+        e \textit{general purpose}, che forniscono le funzionalità per la gestione degli oggetti persistenti.
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[colback=green!5!white, colframe=green!75!black]
+        Per \textbf{Servizio di Persistenza} si intente un sottosistema che fornisce le funzionalità per cooperare
+        con il database e generalmente creato dal framework di persistenza.
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[colback=red!5!white, colframe=red!75!black]
+        Per \textbf{Oggetti Persistenti} si intendono quegli oggetti che necessitano di memorizzazione persistente.
+    \end{tcolorbox}
+
+    \mysubsubsectionformatted{Proprietà dei framework}
+    \hbadness=10000
+    \begin{enumerate}
+        \item \`E un insieme coeso di interfacce e classi che collaborano tra loro per fornire servizi per la parte
+        fondamentale e invariabile di un sottosistema logico.
+        \item Contiene classi concrete e astratte che definiscono le interfacce a cui conformarsi e le interazioni tra
+        gli oggetti.
+        \item Di solito, richiede all'utente di definire delle sottoclassi di classi esistenti del framework per personalizzare
+        ed estendere i servizi del framework.
+        \item Ha delle classi astratte che possono contenere metodi astratti e concreti.
+    \end{enumerate}
+
+    \mysubsubsectionformatted{Servizio di persistenza}
+    Un compito fondamentale del \textbf{Servizio di Persistenza} è quello di \textbf{effettuare il mapping fra
+        la rappresentazione a oggetti e rappresentazione relazionale dei dati}, per farlo, compie due operazioni:
+    \begin{enumerate}
+        \item \textbf{Materializzazione}: traduzione di record in oggetti (caricamento in memoria).
+        \item \textbf{Dematerializzazione}: traduzione di oggetti in record (memorizzazione nel DB).
+    \end{enumerate}
+
+    Per creare un servizio di persistenza, si deve realizzare un framework di persistenza che abbia le seguenti funzionalità:
+    \begin{enumerate}
+        \item Memorizzazione e recupero degli oggetti in e da un sistema di storage persistente.
+        \item Fornire transazioni coerenti di \textbf{commit} e \textbf{rollback}.
+        \item Deve essere estendibile per poter supportare diversi meccanismi e formati di memorizzazione (es. XML).
+    \end{enumerate}
+
+    I \textbf{punti chiave} per progettare un framework di persistenza sono:
+    \begin{enumerate}
+        \item Mapping.
+        \item Indetificazione univoca degli oggetti.
+        \item Materializzazione e Dematerializzazione degli oggetti (mediante pattern \textit{Template}).
+        \item Gestione dello stato degli oggetti persistenti (mediante pattern \textit{State}).
+        \item Modellazione delle operazioni relative a una transazione quali commit e rollback (mediante pattern \textit{Command}).
+        \item Lazy materialization (mediante pattern \textit{Proxy}).
+        \item Aumento delle performance con l'uso della cache.
+    \end{enumerate}
+
+    \newpage
+    \mysubsubsectionformatted{Mapping}
+    Il mapping risponde alla domanda \textit{"Come facciamo a far corrispondere un oggetto a un record in un DB relazionale?"}
+
+    \subsubsection{Design Pattern Representing Objects as Tables}
+    Un pattern utile allo scopo è il \coloredtext[blue]{\textbf{Representing Objects as Tables}}.
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Design Pattern Representing Objects as Tables.tex}
+
+    \mysubsubsectionformatted{Identificazione univoca di oggetti}
+    Questo punto chiave permette di non ripetere la materializzazione di oggetti molteplici volte, col rischio di creare oggetti
+    duplicati.
+
+    \subsubsection{Design Pattern Object Identifier}
+    Il pattern utile allo scopo è l'\coloredtext[blue]{\textbf{Object Identifier}}.
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Design Pattern Object Identifier.tex}
+
+    \newpage
+    \mysubsubsectionformatted{Accesso a un Servizio di Persistenza}
+    Un pattern utile a fornire un unico punto di accesso è il \textbf{Facade}.
+    \subsubsection{Design Pattern Facade}
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Design Pattern Facade.tex}
+
+    \mysubsubsectionformatted{Materializzazione e Dematerializzazione}
+    In questa sezione vedremo \textbf{chi si occupa della Materializzazione e \\l'archiviazione degli oggetti}.
+
+    Esistono due tipi di \textbf{Mapping}:
+    \begin{enumerate}
+        \item \textbf{Direct Mapping}: una classe che rappresenta un oggetto persistente \\definisce al suo interno il codice
+              per il suo salvataggio nel DB (il codice è generato in automatico).
+        \item \textbf{Indirect Mapping}: esistono classi apposite volte al recupero e al salvataggio dei dati in un DB.
+    \end{enumerate}
+
+    Questi due tipi di mappature si possono rappresentare mediante due pattern: \coloredtext[blue]{\textbf{Active Record}} per il Direct e \coloredtext[blue]{\textbf{Database Mapper}}
+    per l'Indirect.
+
+    \newpage
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Pattern Architetturale Active Record.tex}
+    \newpage
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Database Mapper.tex}
+
+    \mysubsectionformatted{Materializzazione in cache}
+    Vogliamo mantenere all'interno della cache locale gli oggetti che sono stati materializzati in modo da:
+    \begin{enumerate}
+        \item Aumentare le prestazioni
+        \item Supportare la gestione delle transazioni
+    \end{enumerate}
+
+    Il pattern utile allo scopo è il \coloredtext[blue]{\textbf{Cache Management}}
+    \mysubsubsectionformatted{Design Pattern Cache Management}
+    \input{capitoli/Esercitazioni/Esercitazione 5 e 6/Design Pattern Cache Management.tex}
+    L'algoritmo di materializzazione, in pseudocodice, è strutturato in questo modo:
+    \vspace{-0.1cm}
+    \begin{algorithm}
+        \caption{Gestione Cache}
+        \begin{algorithmic}[1]
+            \If{l'oggetto è in cache}
+            \State ritorna l'oggetto
+            \Else
+            \State materializza l'oggetto dal database
+            \State salva l'oggetto in cache
+            \State ritorna l'oggetto
+            \EndIf
+        \end{algorithmic}
+    \end{algorithm}
+    \vspace{-0.1cm}
+
+    Per progettare questa funzionalità, il pattern utile allo scopo è il \textbf{Template Method} (visto nella prima esercitazione).
+    Il template method sarà il metodo \textbf{get} in una superclasse astratta. Ogni mapper specifico darà poi la sua implementazione
+    di come ottenere i propri oggetti dal repository.
+
+    \setcounter{figure}{0}
+    \begin{figure}[H]
+        \caption{Template Method per la materializzazione}
+        \centering
+        \includegraphics[scale=0.18]{Esercitazione - Design Patterns/Template Method Materializzazione.png}
+    \end{figure}
+
+    \newpage
+    Fino ad'ora, le query SQL sono sempre state inserite dentro al codice dei metodi.
+
+    \begin{center}
+        \includegraphics[scale=0.25]{Esercitazione - Design Patterns/Template Method SQL/Fase 1.png}
+    \end{center}
+
+    Per migliorare l'implementazione,
+    si può mantenere una classe \textbf{Singleton} dove memorizzare tutte le query SQL necessarie (RDBOperations).
+
+    \begin{center}
+        \includegraphics[scale=0.25]{Esercitazione - Design Patterns/Template Method SQL/Fase 2.png}
+    \end{center}
+
+    Risulta vantaggioso isolare le query in modo da rendere più facile la manutenzione migliorare la performance.
+    \newpage
+    }
